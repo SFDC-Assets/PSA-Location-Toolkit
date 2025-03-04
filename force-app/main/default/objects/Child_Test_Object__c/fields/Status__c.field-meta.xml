@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Status__c</fullName>
+    <externalId>false</externalId>
+    <label>Status</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>no clue</fullName>
+                <default>false</default>
+                <label>no clue</label>
+            </value>
+            <value>
+                <fullName>dead</fullName>
+                <default>false</default>
+                <label>dead</label>
+            </value>
+            <value>
+                <fullName>cold</fullName>
+                <default>false</default>
+                <label>cold</label>
+            </value>
+            <value>
+                <fullName>warm</fullName>
+                <default>false</default>
+                <label>warm</label>
+            </value>
+            <value>
+                <fullName>hot</fullName>
+                <default>false</default>
+                <label>hot</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

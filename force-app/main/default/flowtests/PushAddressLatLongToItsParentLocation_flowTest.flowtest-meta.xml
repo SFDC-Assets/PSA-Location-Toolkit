@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlowTest xmlns="http://soap.sforce.com/2006/04/metadata">
+    <flowApiName>PushAddressLatLongToItsParentLocation</flowApiName>
+    <label>flowTest</label>
+    <testPoints>
+        <elementApiName>Start</elementApiName>
+        <parameters>
+            <leftValueReference>$Record</leftValueReference>
+            <type>InputTriggeringRecordInitial</type>
+            <value>
+                <sobjectValue>{&quot;City&quot;:&quot;McLean&quot;,&quot;Country&quot;:&quot;United States&quot;,&quot;GeocodeAccuracy&quot;:&quot;Address&quot;,&quot;Latitude&quot;:&quot;0&quot;,&quot;LocationType&quot;:&quot;Business Site&quot;,&quot;Longitude&quot;:&quot;0&quot;,&quot;PostalCode&quot;:&quot;22102&quot;,&quot;State&quot;:&quot;VA&quot;,&quot;Street&quot;:&quot;8280 Greensboro Drive&quot;,&quot;attributes&quot;:{&quot;type&quot;:&quot;Address&quot;},&quot;ParentId&quot;:&quot;131a5000000WvMXAA0&quot;}</sobjectValue>
+            </value>
+        </parameters>
+        <parameters>
+            <leftValueReference>$Record</leftValueReference>
+            <type>InputTriggeringRecordUpdated</type>
+            <value>
+                <sobjectValue>{&quot;City&quot;:&quot;McLean&quot;,&quot;Country&quot;:&quot;United States&quot;,&quot;GeocodeAccuracy&quot;:&quot;Address&quot;,&quot;Latitude&quot;:&quot;38.924428&quot;,&quot;LocationType&quot;:&quot;Business Site&quot;,&quot;Longitude&quot;:&quot;-77.231237&quot;,&quot;PostalCode&quot;:&quot;22102&quot;,&quot;State&quot;:&quot;VA&quot;,&quot;Street&quot;:&quot;8280 Greensboro Drive&quot;,&quot;attributes&quot;:{&quot;type&quot;:&quot;Address&quot;},&quot;ParentId&quot;:&quot;131a5000000WvMXAA0&quot;}</sobjectValue>
+            </value>
+        </parameters>
+    </testPoints>
+    <testPoints>
+        <assertions>
+            <conditions>
+                <leftValueReference>$Record.Latitude</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <numberValue>38.924428</numberValue>
+                </rightValue>
+            </conditions>
+            <errorMessage>Latitude value not correct</errorMessage>
+        </assertions>
+        <assertions>
+            <conditions>
+                <leftValueReference>$Record.Longitude</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <numberValue>-77.231237</numberValue>
+                </rightValue>
+            </conditions>
+            <errorMessage>Longitude value not correct</errorMessage>
+        </assertions>
+        <elementApiName>Finish</elementApiName>
+    </testPoints>
+</FlowTest>

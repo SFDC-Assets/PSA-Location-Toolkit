@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>60.0</apiVersion>
+    <environments>Default</environments>
+    <formulas>
+        <name>AddressJSONformula</name>
+        <dataType>String</dataType>
+        <expression>IF(ISBLANK({!$Record.Street}),&apos;&apos;, &apos;&quot;Street&quot;: &quot;&apos; &amp; {!$Record.Street} &amp; &apos;&quot;,&apos;) &amp; 
+IF(ISBLANK({!$Record.City}),&apos;&apos;, &apos;&quot;City&quot;: &quot;&apos; &amp; {!$Record.City} &amp; &apos;&quot;,&apos;) &amp;
+IF(ISBLANK({!$Record.State}),&apos;&apos;, &apos;&quot;State&quot;: &quot;&apos; &amp; {!$Record.State} &amp; &apos;&quot;,&apos;) &amp;
+IF(ISBLANK({!$Record.PostalCode}),&apos;&apos;, &apos;&quot;PostalCode&quot;: &quot;&apos; &amp;  {!$Record.PostalCode}  &amp; &apos;&quot;,&apos;) &amp;
+IF(ISBLANK({!$Record.Country}),&apos;&apos;, &apos;&quot;Country&quot;: &quot;&apos; &amp; {!$Record.Country} &amp; &apos;&quot;&apos;)</expression>
+    </formulas>
+    <interviewLabel>PushAddressFieldsJSONToItsParentLocation {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>PushAddressFieldsJSONToItsParentLocation</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>update_Parent_Location_AddressJSONfields</name>
+        <label>update Parent Location AddressJSONfields</label>
+        <locationX>176</locationX>
+        <locationY>323</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.ParentId</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>LTK_AddressJSON__c</field>
+            <value>
+                <elementReference>AddressJSONformula</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Location</object>
+    </recordUpdates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>update_Parent_Location_AddressJSONfields</targetReference>
+        </connector>
+        <object>Address</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

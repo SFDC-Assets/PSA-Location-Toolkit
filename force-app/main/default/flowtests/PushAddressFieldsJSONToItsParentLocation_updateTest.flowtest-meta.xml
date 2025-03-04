@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlowTest xmlns="http://soap.sforce.com/2006/04/metadata">
+    <flowApiName>PushAddressFieldsJSONToItsParentLocation</flowApiName>
+    <label>updateTest</label>
+    <testPoints>
+        <elementApiName>Start</elementApiName>
+        <parameters>
+            <leftValueReference>$Record</leftValueReference>
+            <type>InputTriggeringRecordInitial</type>
+            <value>
+                <sobjectValue>{&quot;City&quot;:&quot;Washington&quot;,&quot;Country&quot;:&quot;United States&quot;,&quot;LocationType&quot;:&quot;Site&quot;,&quot;PostalCode&quot;:&quot;20006&quot;,&quot;State&quot;:&quot;DC&quot;,&quot;Street&quot;:&quot;1801 K Street Northwest&quot;}</sobjectValue>
+            </value>
+        </parameters>
+        <parameters>
+            <leftValueReference>$Record</leftValueReference>
+            <type>InputTriggeringRecordUpdated</type>
+            <value>
+                <sobjectValue>{&quot;City&quot;:&quot;Washington&quot;,&quot;Country&quot;:&quot;United States&quot;,&quot;LocationType&quot;:&quot;Site&quot;,&quot;PostalCode&quot;:&quot;20006&quot;,&quot;State&quot;:&quot;DC&quot;,&quot;Street&quot;:&quot;1801 K Street Northwest&quot;}</sobjectValue>
+            </value>
+        </parameters>
+    </testPoints>
+    <testPoints>
+        <assertions>
+            <conditions>
+                <leftValueReference>$Record.Street</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>1801 K Street Northwest</stringValue>
+                </rightValue>
+            </conditions>
+        </assertions>
+        <assertions>
+            <conditions>
+                <leftValueReference>$Record.City</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Washington</stringValue>
+                </rightValue>
+            </conditions>
+        </assertions>
+        <elementApiName>Finish</elementApiName>
+    </testPoints>
+</FlowTest>

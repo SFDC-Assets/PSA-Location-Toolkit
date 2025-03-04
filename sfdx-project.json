@@ -1,0 +1,40 @@
+{
+  "packageDirectories": [
+    {
+      "path": "force-app",
+      "package": "Location Toolkit",
+      "versionName": "ver 0.9.42",
+      "versionNumber": "0.9.42.NEXT",
+      "default": true,
+      "versionDescription": "Location Toolkit v0.9.41d1"
+    }
+  ],
+  "namespace": "",
+  "sfdcLoginUrl": "https://login.salesforce.com",
+  "sourceApiVersion": "60.0",
+  "packageAliases": {
+    "Location Toolkit": "0Hoa50000001VszCAE",
+    "Location Toolkit@0.2.0-1": "04ta5000000Tr2XAAS",
+    "Location Toolkit@0.2.0-3": "04ta5000000UtK1AAK",
+    "Location Toolkit@0.2.0-4": "04ta5000000UtS5AAK",
+    "Location Toolkit@0.2.0-5": "04ta5000000V4VZAA0",
+    "Location Toolkit@0.2.0-6": "04ta5000000VGlFAAW",
+    "Location Toolkit@0.9.0-2": "04ta5000000VU8HAAW",
+    "Location Toolkit@0.9.0-3": "04ta5000000VVU9AAO",
+    "Location Toolkit@0.9.0-5": "04ta5000000VultAAC",
+    "Location Toolkit@0.9.0-6": "04ta5000000VwMHAA0",
+    "Location Toolkit@0.9.0-7": "04ta5000000VyG1AAK",
+    "Location Toolkit@0.9.0-8": "04ta5000000WtEHAA0",
+    "Location Toolkit@0.9.0-9": "04ta5000000Wvw1AAC",
+    "Location Toolkit@0.9.1-1": "04ta5000000Xc05AAC",
+    "Location Toolkit@0.9.1-2": "04ta5000000Zs2LAAS",
+    "Location Toolkit@0.9.2-1": "04ta5000000ZsDdAAK",
+    "Location Toolkit@0.9.2-2": "04ta5000000bN2TAAU",
+    "Location Toolkit@0.9.2-3": "04ta5000000bOg5AAE",
+    "Location Toolkit@0.9.2-4": "04ta5000000bPibAAE",
+    "Location Toolkit@0.9.3-1": "04ta5000000bQDFAA2",
+    "Location Toolkit@0.9.4-1": "04ta5000000jUhtAAE",
+    "Location Toolkit@0.9.41-1": "04ta5000000jt1xAAA",
+    "Location Toolkit@0.9.42-1": "04ta5000000jtI5AAI"
+  }
+}

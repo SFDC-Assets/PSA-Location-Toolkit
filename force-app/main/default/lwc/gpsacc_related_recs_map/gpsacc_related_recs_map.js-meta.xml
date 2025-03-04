@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>59.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>Related Records Locations</masterLabel>
+    <description>Displays Map of Related Records</description>
+    <targets>
+        <target>lightning__RecordPage</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__RecordPage">
+            <property name="childRelNameProperty" required="true" label="'Child Relationship Name' on Child Lookup Field to Parent" type="String" placeholder="Cases"/>
+            <property name="nameTitleFieldProperty" label="Name/Title Field" required="true" placeholder="CaseNumber or Name" type="String"/>
+            <property name="descriptionFieldProperty" required="true" label="Description Field" type="String" placeholder="Subject or CustomText__c"/>
+            <property name="defaultColorProp" label="Default Marker Color" datasource="blue 🔵,green 🟢,red 🔴,orange 🟠,yellow 🟡,purple 🟣,brown 🟤,white ⚪" default="red 🔴" type="String"/>
+            <property name="colorFieldProperty" label="Picklist/Text Field for Custom Marker Colors" type="String" placeholder="Status__c"/>
+            <property name="plValue1Property" label="Picklist Value 1" type="String"/>
+            <property name="color1Prop" label="Custom Color for Picklist Value 1" datasource="blue 🔵,green 🟢,red 🔴,orange 🟠,yellow 🟡,purple 🟣,brown 🟤,white ⚪" type="String"/>
+            <property name="plValue2Property" label="Picklist Value 2" type="String"/>
+            <property name="color2Prop" label="Custom Color for Picklist Value 2" datasource="blue 🔵,green 🟢,red 🔴,orange 🟠,yellow 🟡,purple 🟣,brown 🟤,white ⚪" type="String"/>
+            <property name="plValue3property" label="Picklist Value 3" type="String"/>
+            <property name="color3Prop" label="Custom Color for Picklist Value 3" datasource="blue 🔵,green 🟢,red 🔴,orange 🟠,yellow 🟡,purple 🟣,brown 🟤,white ⚪" type="String"/>
+            <property name="plValue4Property" label="Picklist Value 4" type="String"/>
+            <property name="color4Prop" label="Custom Color for Picklist Value 4" datasource="blue 🔵,green 🟢,red 🔴,orange 🟠,yellow 🟡,purple 🟣,brown 🟤,white ⚪" type="String"/>
+            <property name="plValue5Property" label="Picklist Value 5" type="String"/>
+            <property name="color5Prop" label="Custom Color for Picklist Value 5" datasource="blue 🔵,green 🟢,red 🔴,orange 🟠,yellow 🟡,purple 🟣,brown 🟤,white ⚪" type="String"/>
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

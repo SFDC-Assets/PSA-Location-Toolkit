@@ -1,0 +1,21 @@
+.custom-inner-box {
+    padding: var(--lwc-varSpacingSmall, 0.5rem);
+    border-radius: var(--lwc-varSpacingMedium, 5rem);
+    margin: var(--lwc-varSpacingXxSmall, 0.25rem);
+}   
+
+.custom-outer-box {
+    border: none;
+    margin: var(--lwc-varSpacingXxSmall, 0.25rem);
+    padding-top: var(--lwc-varSpacingVerticalXxSmall, 0.25rem);
+    padding: var(--lwc-varSpacingXSmall, 0.5rem);
+    padding-bottom: t(spacingNone);
+} 
+
+.custom-color_black {
+    color: #000000;
+}
+
+.custom-semibold {
+    font-weight: 500;
+}

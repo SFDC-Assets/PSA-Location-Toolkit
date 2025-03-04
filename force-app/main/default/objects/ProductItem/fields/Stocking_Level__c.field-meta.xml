@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Stocking_Level__c</fullName>
+    <externalId>false</externalId>
+    <formula>If(QuantityOnHand&lt;5,&apos;restock ASAP&apos;,
+ If(QuantityOnHand&lt;10,&apos;low&apos;,&apos;OK&apos;) 
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>custom help text</inlineHelpText>
+    <label>Stocking Level</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>
