@@ -1,50 +1,56 @@
-<h1><img src="./docs/LTK-sq-logo.png" width="32"> Location Toolkit</h1>
+<!-- markdownlint-disable-file MD033 -->
+# <img src="./docs/LTK-sq-logo.png" alt="Location Toolkit" width="32" height="32"> Location Toolkit
 
 ![Location Toolkit (LTK) in action](./docs/LTK-animated-lwc-sample.gif "Location Toolkit (LTK) in action")
 
-Accelerator Listing: [sfdc.co/LTK](http://sfdc.co/LTK) 
+Accelerator Listing: [sfdc.co/LTK](http://sfdc.co/LTK)
 
 ## About Location Toolkit
 
-Many people don't realize Salesforce has a [Location](https://developer.salesforce.com/docs/atlas.en-us.object_reference.meta/object_reference/sforce_api_objects_location.htm) object! 
+Many people don't realize Salesforce has a [Location](https://developer.salesforce.com/docs/atlas.en-us.object_reference.meta/object_reference/sforce_api_objects_location.htm) object!
 
 Location Toolkit (LTK) helps take advantage of that for capturing and mapping locations of child records related to a parent record, e.g. mapping Cases by Account or Incident, Product Items by Product, or similar parent-child relationships using any other pairing of standard or custom objects.
 
 ## High-level Steps for LTK
+
 1. [Install LTK](#installation) making sure the target org has [required feature(s) & licensed users](#before-installing)
 2. [Create Location records](#create-location-records)
 3. [Use or create a Location lookup field](#use-or-create-a-location-lookup-field) on object for which one wants to track location, e.g. Case, Product Item, a custom object, etc
-4. [Use "Related Records Locations" LWC](#use-related-records-locations-lwc) to render locations of such records under a parent object, rendering a record related list on a Google Map 
+4. [Use "Related Records Locations" LWC](#use-related-records-locations-lightning-web-component) to render locations of such records under a parent object, rendering a record related list on a Google Map
 
 ## Before Installing
-### LTK org requirements:
+
+### LTK org requirements
+
 1. A Salesforce Industry Cloud license, e.g. Public Sector Solutions, Health Cloud, Education Cloud, etc. such that the [Address](https://developer.salesforce.com/docs/atlas.en-us.object_reference.meta/object_reference/sforce_api_objects_address.htm) object is enabled and available
-2. [Address Autocompletion](https://help.salesforce.com/s/articleView?id=sf.customize_maps_autocomplete.htm&type=5) is enabled in the org
-3. Enable Visit Inventory Management under Setup → Inventory Settings
-4. Lightning Web Security Enabled
-5. Salesforce Lightning Experience (LEX) enabled, i.e. Classic UI not supported
+2. [Address Autocompletion](https://help.salesforce.com/s/articleView?id=sf.customize_maps_autocomplete.htm&type=5) is enabled in the org under Setup → Company Settings → Maps and Location Settings
+3. Enable Visit Inventory Management (Setup → Inventory Settings)
+4. Lightning Web Security Enabled (Setup → Security → Session Settings)
+5. Salesforce Lightning Experience (LEX) enabled, i.e. Classic UI is not supported
 
 ### License(s) Required
+
 * Internal Users with assigned Public Sector Solutions, Health Cloud, or similar Industry Cloud permission set license(s). Basically a user needs at least Read access to Address and Location objects.
 
 ### General Assumptions/Best Practices
+
 * Install this Accelerator first in a sandbox or test environment. It is not recommended that one install any Accelerator directly into production environments.
 * If one does not already have a suitable Salesforce org, consider a Public Sector Solutions [trial environment](https://developer.salesforce.com/free-trials/comparison/public-sector) which can be activated in minutes.
 
 ## Installation
 
-* Production install: [https://login.salesforce.com/packaging/installPackage.apexp?p0=04ta5000000k7jF](https://login.salesforce.com/packaging/installPackage.apexp?p0=04ta5000000k7jF&isdtp=p1)
-* Sandbox install: [https://test.salesforce.com/packaging/installPackage.apexp?p0=04ta5000000k7jF&isdtp=p1](https://test.salesforce.com/packaging/installPackage.apexp?p0=04ta5000000k7jF&isdtp=p1)
+* Production install: [https://login.salesforce.com/packaging/installPackage.apexp?p0=04ta5000009SwNF](https://login.salesforce.com/packaging/installPackage.apexp?p0=04ta5000009SwNF&isdtp=p1)
+* Sandbox install: [https://test.salesforce.com/packaging/installPackage.apexp?p0=04ta5000009SwNF&isdtp=p1](https://test.salesforce.com/packaging/installPackage.apexp?p0=04ta5000009SwNF&isdtp=p1)
 
-Version Number: 1.942\
-Version Name: LTK RC version 1.09-42\
-Package ID: 04ta5000000k7jF\
+Version Number: 1.944\
+Version Name: LTK v1.09.44\
+Package ID: 04ta5000009SwNF\
 Package type: Unmanaged 1GP
-
 
 ## Post-Install Setup & Configuration
 
 ### Create Location records
+
 Use the New Geocoded Location utility item in the Location Toolkit app.  This utility runs the [Geocoded_Location_Creator](./force-app/main/default/flows/Geocoded_Location_Creator.flow-meta.xml) screen flow, which one can also add as a Utility Item into any other Salesforce app’s configuration.
 
 #### Creating Address-based Locations
@@ -60,10 +66,9 @@ When saved, this creates 2 related records actually - a parent Location record a
 > [!NOTE]
 > <details>
 > <summary>👈 click to see Sample Location Record with child Address</summary>
-> 
+>
 > ![Sample Location Record with child Address](./docs/parent-location-record-sample.png "Sample Location Record with child Address")
 > </details>
-
 
 It is recommended that one names the location record based on its Address string, which is easily enabled by clicking the checkbox “Automatically Name New Location using this Address”.
 
@@ -86,6 +91,7 @@ So for custom or standard objects without a Location reference field, create a c
 ![Cases Child Relationship Name](./docs/ChildRelationship-Cases.png "Cases Child Relationship Name")
 
 ### Use "Related Records Locations" Lightning Web Component
+
 After one has a child object with a Location field and some records of that object added/updated with a Location, users can then view those records on a map with the Related Records Locations lightning web component.  Some examples shown above for this are already configured in the Location Toolkit application.
 
 ![example Product record with map of its ProductItems](./docs/related-locations-example-page.png "example Product record with map of its ProductItems")
@@ -102,12 +108,12 @@ The Related Records Locations lightning web component is essentially a type of R
 
 This is found in the Location lookup field configured on the child object.  See the highlighted areas of the images in the [Use or create a lookup field to Location](#use-or-create-a-location-lookup-field) section above for reference.
 
-So for ProductItem’s Location field, this parameter is _ProductItems_. For a custom Location field like Case.Location__c defined in the LTK package, this parameter is _Cases_. 
+So for ProductItem’s Location field, this parameter is _ProductItems_. For a custom Location field like Case.Location__c defined in the LTK package, this parameter is _Cases_.
 
-For other custom Location fields, this parameter will be defined by the Salesforce administrator creating the custom Lookup field.  The default value is should be the plural form of the child object’s name.
+For other custom Location fields, this parameter will be defined by the Salesforce administrator creating that custom Lookup field.  The default value should be the plural form of the child object’s name.
 
 > [!IMPORTANT]
-> This parameter *must* be set correctly for the Related Records Locations lightning web component to function properly.
+> This parameter _must_ be set correctly for the Related Records Locations lightning web component to function properly.
 
 #### Name/Title Field
 
@@ -116,7 +122,8 @@ This can be any text or text formula field on the child object. The Name field i
 > [!NOTE]
 > <details>
 > <summary>👈 click to see Rendered Example (ProductItem.ProductItemNumber)</summary>
-> <img alt="Rendered Example (ProductItem.ProductItemNumber)" src="./docs/Name-Title-field-param-in-LWC.png" width="320">
+>
+> ![Rendered Example (ProductItem.ProductItemNumber)](./docs/Name-Title-field-param-in-LWC.png "Rendered Example (ProductItem.ProductItemNumber)")
 > </details>
 
 #### Description Field
@@ -126,7 +133,8 @@ This can be any text or text formula field on the child record.  For Case this c
 > [!NOTE]
 > <details>
 > <summary>👈 click to see Rendered Example (Case.Subject)</summary>
-> <img alt="Rendered Example (Case.Subject)" src="./docs/Description-field-param-in-LWC.png" width="320">
+>
+> ![Rendered Example (Case.Subject)](./docs/Description-field-param-in-LWC.png "Rendered Example (Case.Subject)")
 > </details>
 
 ### Other Parameters
@@ -141,7 +149,7 @@ This can be any text, text formula or picklist field.  This field should be expe
 
 #### Picklist Value 1/2/3/4/5
 
-Select the value for the Picklist/Text Field for Custom Marker Colors parameter field can be assigned a custom color. This parameter will also be shown in the key section under the map counting the number of matching records. 
+Select the value for the Picklist/Text Field for Custom Marker Colors parameter field can be assigned a custom color. This parameter will also be shown in the key section under the map counting the number of matching records.
 
 #### Custom Color for Picklist Value 1/2/3/4/5
 
@@ -150,6 +158,7 @@ Select the color for any record whose value for its Picklist/Text Field for Cust
 > [!NOTE]
 > <details>
 > <summary>👈 click to see example configuration for all parameters above</summary>
+>
 > <img alt="Other Parameters Example" src="./docs/custom-color-for-picklist-value-in-LWC.png" width="320">
 > </details>
 
@@ -158,27 +167,40 @@ Select the color for any record whose value for its Picklist/Text Field for Cust
 For full details, see contents of [./force-app/main/default/](./force-app/main/default/) folder
 
 LTK includes the following assets:
-- Application (1)
-- Custom objects (2)
-- Custom fields on standard objects 
-- Lightning Web Component (LWC): Related Records Locations
-- Flows (3)
-  - Geocoded Location Creator
-  - LTKInfo
-  - PushAddressLatLongToItsParentLocation
-- Lightning Pages (Flexipages) (7)
-  - Account_Record_Page_LTK
-  - Case_Record_Page_LTK
-  - Location_Recpage_LTK
-  - Location_Toolkit
-  - Location_Toolkit_UtilityBar
-  - Parent_Test_Object_Record_Page
-  - Product_Record_Page
-- Documentation, including:
-  - This [Readme file](./README.md)
-  - [Further Information](./FURTHER_INFO.md)
+
+* Application (1)
+* Custom objects (2)
+* Custom fields on standard objects
+* Lightning Web Component (LWC): Related Records Locations
+* Flows (3)
+  * Geocoded Location Creator
+  * LTKInfo
+  * PushAddressLatLongToItsParentLocation
+* Lightning Pages (Flexipages) (7)
+  * Account_Record_Page_LTK
+  * Case_Record_Page_LTK
+  * Location_Recpage_LTK
+  * Location_Toolkit
+  * Location_Toolkit_UtilityBar
+  * Parent_Test_Object_Record_Page
+  * Product_Record_Page
+* Documentation, including:
+  * This [Readme file](./README.md)
+  * [Further Information](./FURTHER_INFO.md)
 
 ## FAQs
+
+**_Q: In the Geocoded Location utility item, regarding the 🪧 Please wait for ⬇️ Enter Address to Lookup using Address Autocompletion field ⬇️ to appear below ... ⏱️, what if that field never appears for users?_**
+
+A: The user's web browser may not be loading the javascript file(s) for the Salesforce mapsloader or Google Maps API.  Try adding these base URLs to the CORS and Trusted URLs settings in Salesforce Setup.  The Trusted URLs should also have CSP Context set to All and connect-src (scripts) checked.  After adding these, affected users should clear their browser's cache as well and/or log out & back into Salesforce.
+
+```generic
+https://maps.googleapis.com
+https://maps.a.forceusercontent.com
+https://maps.b.forceusercontent.com
+```
+
+Also the user may not have allowed Location permissions for the site settings of their Salesforce org in their browser.  For that user's browser (Chrome, Firefox, Edge, etc), check online documentation for changing a site's Location privacy/security settings to Allow.
 
 **_Q: What about [Salesforce Maps](https://www.salesforce.com/sales/mapping-software/)?_**
 
@@ -190,7 +212,8 @@ A: It doesn't try to render those on its Google Map.  So if there are least some
 
 ## Additional Resources
 
-See [further information](./FURTHER_INFO.md) for 
+See [further information](./FURTHER_INFO.md) for
+
 * more details on the data model used by LTK
 * compliance information regarding data flows to/from Google and the user's web browser. This is meant to advise CISO, CTO or other customer stakeholders who would like more background details for LTK suitability deployed on orgs requiring ATO review for FedRAMP or similar compliance standards.
 * release/version information
@@ -209,4 +232,3 @@ By using this site and these accelerators, you are agreeing to these terms. Plea
 Accelerators are not supported by Salesforce, they are supplied as-is, and are meant to be a starting point for your organization. Salesforce is not liable for the use of accelerators.
 
 For more about the Accelerator program, visit: [https://gpsaccelerators.developer.salesforce.com/](https://gpsaccelerators.developer.salesforce.com/)
-

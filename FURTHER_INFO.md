@@ -1,10 +1,10 @@
-# Supplemental Information for Location Toolkit (LTK) 
+# Supplemental Information for Location Toolkit (LTK)
 
 ## Object Model
 
 LTK leverages the [Location](https://developer.salesforce.com/docs/atlas.en-us.object_reference.meta/object_reference/sforce_api_objects_location.htm) and [Address](https://developer.salesforce.com/docs/atlas.en-us.object_reference.meta/object_reference/sforce_api_objects_address.htm) objects enabled in Salesforce industry cloud products, linked to any other Salesforce object via a Location lookup/reference field in that object.  The Location lookup field can be a standard field or a custom field.
 
-Below is an example of the data model for tracking location of ProductItem records, where the ProductItem is a child or a parent Product (Product2) record.
+Below is an example of the data model for tracking location of ProductItem records, where the ProductItem is a child of a parent Product (Product2) record.
 This data model is what then supports the Related Records Location lightning web component rendering ProductItem records on a map for a Product record page.
 
 ![LTK ERD](./docs/LTK_ERD.png)
@@ -31,7 +31,7 @@ _Sample values populated_: `38.8881121, -77.0273323`
 
 Specific to this Location Toolkit package, the following data flows are documented below because they exchange with Google APIs some user-specified locations & addresses, or Salesforce object records containing location and/or address information.
 
-These API data flows only traverse only between the end-user’s web browser and the specified Google API service endpoint. These flows _do not_ originate from Salesforce servers and thus are not subject to compliance boundaries related to FedRAMP or similar cloud security standards. 
+These API data flows traverse only between the end-user’s web browser and the specified Google API service endpoint. These flows _do not_ originate from Salesforce servers and thus are not subject to Salesforce compliance boundaries related to FedRAMP or similar cloud security standards.
 
 ### Address Autocompletion example
 
@@ -40,11 +40,13 @@ These API data flows only traverse only between the end-user’s web browser and
 When an end-user creates a new Location using Address Autocompletion to create or update that Location’s Address, their browser makes the following API call to Google to offer the user matching fully-formed address(es)
 
 Request (http GET)
-```
+
+```generic
 https://maps.googleapis.com/maps/api/place/js/AutocompletionService.GetPredictionsJson?1s1600%20Pennsylvania%20Avenue%20NW%20Washington&4sen-US&6m6&1m2&1d37.790091&2d-122.396848&2m2&1d37.790091&2d-122.396848&9sgeocode&15e3&21m1&2e1&r_url=https%3A%2F%2Fmaps.a.forceusercontent.com%2Flightningmaps%2Fmapsloader&callback=_xdc_._ya9230&key=AIzaSyAnsUgPM5XmaLKYqFVfdP1TmuiOzBhtSdA&token=59073
 ```
 
 Response
+
 ```json
 /**/_xdc_._ya9230 && _xdc_._ya9230( {
 "predictions" :
@@ -130,11 +132,13 @@ Response
 Once the user selects a specific matching address, parts of the `address_components` Response data associated with the selected address ([Google Place Details](https://developers.google.com/maps/documentation/places/web-service/details)) are entered automatically back into the Geocoded Location utility as a convenience to the end user.  
 
 Request (http GET)
-```
+
+```generic
 https://maps.googleapis.com/maps/api/place/js/PlaceService.GetPlaceDetails?2sen-US&10e3&14m1&1sChIJj29ffVS3t4kRssvmz4DOiZE&17m1&2e1&r_url=https%3A%2F%2Fmaps.a.forceusercontent.com%2Flightningmaps%2Fmapsloader&callback=_xdc_._yzyth7&key=AIzaSyAnsUgPM5XmaLKYqFVfdP1TmuiOzBhtSdA&token=83326`
 ```
 
 Response
+
 ```json
 /**/_xdc_._yzyth7 && _xdc_._yzyth7( {
 "html_attributions" : [],
@@ -261,7 +265,7 @@ Response
 
 The LTK Related Records Locations lightning web component implements a [Map](https://developer.salesforce.com/docs/component-library/bundle/lightning-map/documentation) Lightning Web Component, with Marker locations rendered using google’s [Markers](https://developers.google.com/maps/documentation/javascript/markers) javascript API.  
 
-For Location records that only have Address information but no Latitude or Longitude coordinates (i.e. not geocoded in advance) Google’s [Geocoder](https://developers.google.com/maps/documentation/javascript/reference/geocoder#GeocoderRequest) API is called to Geocode each Marker’s location at runtime as the map is rendered by the user’s web browser via the LTK Related Records Locations lightning web component. 
+For Location records that only have Address information but no Latitude or Longitude coordinates (i.e. not geocoded in advance) Google’s [Geocoder](https://developers.google.com/maps/documentation/javascript/reference/geocoder#GeocoderRequest) API is called to Geocode each Marker’s location at runtime as the map is rendered by the user’s web browser via the LTK Related Records Locations lightning web component.
 
 This LTK package does not itself include any Geocoding functions or logic. However any customer org could configure Geocoding separately on Location or Address objects using the [Salesforce Maps product](https://www.salesforce.com/sales/mapping-software/), or by implementing an Apex callout like [this](https://help.salesforce.com/s/articleView?id=sf.fields_caf_geocode.htm&type=5) or an [http callout from flow](https://help.salesforce.com/s/articleView?id=sf.flow_http_callout.htm&type=5) out to Geocoding services from Google, ESRI, [AWS](https://aws.amazon.com/pm/location), et. al.
 
@@ -270,11 +274,13 @@ Note also that for a parent record page with multiple child records requiring Ge
 Here is an example Geocoding API request/response getting Latitude and Longitude for the address 8280 Greensboro Dr, McLean, VA 22102, USA
 
 Request (http GET)
-```
+
+```generic
 https://maps.googleapis.com/maps/api/js/GeocodeService.Search?4s8280%20Greensboro%20Drive%20McLean%2022102%20VA%20United%20States&7sUS&9sen-US&r_url=https%3A%2F%2Fmaps.a.forceusercontent.com%2Flightningmaps%2Fmapsloader&callback=_xdc_._ih68q2&key=AIzaSyAnsUgPM5XmaLKYqFVfdP1TmuiOzBhtSdA&token=57526
 ```
 
 Response
+
 ```json
 /**/_xdc_._ih68q2 && _xdc_._ih68q2( {
 "results" :
@@ -392,13 +398,11 @@ Response
 
 ## Release Notes
 
-### v1.942 (Initial public release) - Spring 25
+### v1.944 (Initial public release) - Summer 25
 
 First release!  Release number is >1 due to quirks in Salesforce packaging process.
 
 Features under consideration for future releases include
+
 * enhancing Related Records Locations lwc for use in Flow Screens rendering records of a config'd object having a Location field
 * creating another lwc based on LeafletJS for UI/other features not available in the base `lightning-map` lwc
-
-
-

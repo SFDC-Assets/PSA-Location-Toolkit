@@ -1,7 +1,7 @@
 import { LightningElement, api, track, wire } from 'lwc';
 import { gql, graphql, refreshGraphQL } from "lightning/uiGraphQLApi";
 import { getObjectInfo } from 'lightning/uiObjectInfoApi';
-import { NavigationMixin } from "lightning/navigation";
+import { NavigationMixin,CurrentPageReference } from "lightning/navigation";
 import { RefreshEvent,registerRefreshHandler,unregisterRefreshHandler } from 'lightning/refresh';
 import { mapMarkerSvgPath, keyMarkerSvgPath } from './gpsacc_related_recs_map-resources';
 import { gql_template, iconName, sumOfMapValues, getNestedValue, parseAddressFieldValue, findByRelName, findField, findLocationReferenceField, findColorFieldPropertyById, grepNonNullRecords, includesByRelName } from './gpsacc_related_recs_map-util_functions';
@@ -60,6 +60,21 @@ export default class Gpsacc_related_recs_map extends NavigationMixin(LightningEl
 
     locationLU;
     locationRLU;
+
+    @wire(CurrentPageReference) PageRef;
+
+
+    navigateToRecordViewPage() {
+        // View object record page
+        this[NavigationMixin.Navigate]({
+        type: "standard__recordPage",
+        attributes: {
+            recordId: this.recordId,
+            // objectApiName: "namespace__ObjectName", // objectApiName is optional
+            actionName: "view",
+            },
+        });
+    }
 
     combineMapsIntoMarkerColorsJSON(map1, map2) {
         const resultArray = [];
@@ -344,7 +359,7 @@ export default class Gpsacc_related_recs_map extends NavigationMixin(LightningEl
 
         console.log('selectedMarker: '+JSON.stringify(this.selectedMarker));
         
-        this.linkURL = "../"+this.selectedMarker.value+"/view";
+        this.linkURL = "../../"+this.selectedMarker.value+"/view";
         this.DescriptionField_propValue=this.selectedMarker.description;
 
         if (this.colorFieldProperty!==null) {
