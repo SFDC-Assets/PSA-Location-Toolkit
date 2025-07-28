@@ -396,13 +396,9 @@ Response
 } )
 ```
 
-## Release Notes
+## Roadmap
 
-### v1.944 (Initial public release) - Summer 25
-
-First release!  Release number is >1 due to quirks in Salesforce packaging process.
-
-Features under consideration for future releases include
+Features under consideration for future releases include:
 
 * enhancing Related Records Locations lwc for use in Flow Screens rendering records of a config'd object having a Location field
 * creating another lwc based on LeafletJS for UI/other features not available in the base `lightning-map` lwc
