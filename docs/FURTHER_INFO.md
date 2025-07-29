@@ -7,7 +7,7 @@ LTK leverages the [Location](https://developer.salesforce.com/docs/atlas.en-us.o
 Below is an example of the data model for tracking location of ProductItem records, where the ProductItem is a child of a parent Product (Product2) record.
 This data model is what then supports the Related Records Location lightning web component rendering ProductItem records on a map for a Product record page.
 
-![LTK ERD](./docs/LTK_ERD.png)
+![LTK ERD](./LTK_ERD.png)
 
 ## Flow Triggers for Parent Location and Child Address records
 
